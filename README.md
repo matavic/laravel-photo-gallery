@@ -1,1 +1,1 @@
-# laravel-photo-gallery
+# Laravel Photo Gallery
