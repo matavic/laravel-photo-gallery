@@ -13,6 +13,6 @@
     <label for="cover_image">File : </label>
     <input type="file" name="cover_image" id="cover_image">
 
-    <input type="submit" value="Create">
+    <input class="button" type="submit" value="Create">
 </form>
 @endsection
