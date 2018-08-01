@@ -9,7 +9,10 @@
     <title>Photoshow</title>
 </head>
 <body>
+    @include('partials.topbar')
+    <br>
     <div class="row">
+        @include('partials.messages')
         @yield('content')
     </div>
 </body>

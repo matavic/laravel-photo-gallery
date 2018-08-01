@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class AlbumsController extends Controller
 {
     public function index()
@@ -16,6 +18,25 @@ class AlbumsController extends Controller
 
     public function store(Request $request)
     {
-        return 'Album created';
+        $this->validate($request, [
+            'name' => 'required',
+            'cover_image' => 'image|max:1999',
+        ]);
+
+        // Get filename with extension
+        $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+
+        // Get just the filename
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+        // Get just the extension
+        $extension = $request->file('cover_image')->getClientOriginalExtension();
+
+        // Create new filename
+        $filenameToStore = $filename . '_' . time() . '.' . $extension;
+
+        $path = $request->file('cover_image')->storeAs('public/album_covers', $filenameToStore);
+
+        return $path;
     }
 }
